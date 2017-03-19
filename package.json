@@ -1,0 +1,16 @@
+{
+  "name": "webpack_module_list",
+  "version": "0.0.1",
+  "description": "A WebPack2 plugin to emit a JSON file with a map of module names and files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "git+https://github.com/object88/webpack_module_list.git",
+  "author": "Paul Brousseau",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/object88/webpack_module_list/issues"
+  },
+  "homepage": "https://github.com/object88/webpack_module_list#readme"
+}
