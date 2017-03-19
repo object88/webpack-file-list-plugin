@@ -2,8 +2,9 @@
   "name": "webpack_module_list",
   "version": "0.0.1",
   "description": "A WebPack2 plugin to emit a JSON file with a map of module names and files",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
+    "build": "babel src -d lib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "git+https://github.com/object88/webpack_module_list.git",
@@ -12,5 +13,12 @@
   "bugs": {
     "url": "https://github.com/object88/webpack_module_list/issues"
   },
-  "homepage": "https://github.com/object88/webpack_module_list#readme"
+  "homepage": "https://github.com/object88/webpack_module_list#readme",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-preset-env": "^1.2.2",
+    "flow-bin": "^0.42.0"
+  }
 }
