@@ -1,7 +1,7 @@
 # webpack_module_list
-A WebPack2 plugin to emit a JSON file with a map of module names and files
+A WebPack2 plugin to emit a JSON file with a map of chunk names and files.
 
-[![Build Status](https://travis-ci.org/object88/webpack-module-list-plugin.svg?branch=master)](https://travis-ci.org/object88/webpack-module-list-plugin)
+[![Build Status](https://travis-ci.org/object88/webpack-file-list-plugin.svg?branch=master)](https://travis-ci.org/object88/webpack-file-list-plugin)
 
 When using Webpack's [Common Chunk Plugin](https://webpack.js.org/plugins/commons-chunk-plugin/), your chunk files can be given a hash string in the name to differentiate the build.  Example webpack output:
 
