@@ -52,7 +52,7 @@ module.exports = {
       name: 'manifest',
       minChunks: Infinity,
     }),
-    new WebpackModulesList({
+    new WebpackFileList({
       filename: 'foo.json',
       path: path.resolve(__dirname, 'bin'),
     }),
