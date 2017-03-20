@@ -5,18 +5,25 @@ import path from 'path';
 type Options = {
   filename: string,
   path: string,
-}
+  includeMap?: boolean,
+};
 
 type Result = {
   [key: string]: ResultEntry,
-}
+};
 
 type ResultEntry = {
   source: string,
   map?: string,
-}
+};
 
 function WebpackModuleList(options: Options) {
+  if (!options.filename) {
+    throw new Error("filename property is required on options");
+  } else if (!options.path) {
+    throw new Error("filename property is required on options");
+  }
+
   this.options = options;
 }
 
@@ -25,7 +32,7 @@ WebpackModuleList.prototype.apply = function(compiler) {
     const json: Result = {};
     compilation.chunks.forEach((chunk) => {
       chunk.files.forEach((filename) => {
-        var ref = json[chunk.name]
+        let ref = json[chunk.name]
         if (ref === undefined) {
           ref = {};
           json[chunk.name] = ref;
@@ -33,7 +40,7 @@ WebpackModuleList.prototype.apply = function(compiler) {
 
         if (filename.endsWith('js')) {
           ref.source = filename;
-        } else if (filename.endsWith('map')) {
+        } else if (filename.endsWith('map') && this.options.includeMap) {
           ref.map = filename;
         }
       });

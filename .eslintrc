@@ -1,0 +1,34 @@
+{
+  "env": {
+    "node": true
+  },
+
+  "parser": "babel-eslint",
+
+  "plugins": [
+    "flowtype",
+    "import"
+  ],
+
+  "rules": {
+    "comma-dangle": [2, "always-multiline"],
+
+    "flowtype/boolean-style": [2, "boolean"],
+    "flowtype/define-flow-type": 2,
+    "flowtype/delimiter-dangle": [2, "always-multiline"],
+    "flowtype/generic-spacing": [2, "never"],
+    "flowtype/no-dupe-keys": 0,
+    "flowtype/no-weak-types": 0,
+    "flowtype/require-parameter-type": 0,
+    "flowtype/require-return-type": [1, {"excludeArrowFunctions":"expressionsOnly"}],
+    "flowtype/require-valid-file-annotation": [0],
+    "flowtype/semi": [2, "always"],
+    "flowtype/sort-keys": 0,
+    "flowtype/space-after-type-colon": [2, "always"],
+    "flowtype/space-before-generic-bracket": [2, "never"],
+    "flowtype/space-before-type-colon": [2, "never"],
+    "flowtype/type-id-match": 0,
+    "flowtype/union-intersection-spacing": [2, "always"],
+    "flowtype/use-flow-type": 2,
+  },
+}
