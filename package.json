@@ -1,13 +1,13 @@
 {
   "name": "webpack-file-list-plugin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A WebPack2 plugin to emit a JSON file with a map of chunk names and files",
   "main": "lib/index.js",
   "scripts": {
     "build": "babel src -d lib",
     "eslint": "./node_modules/.bin/eslint .",
     "flow": "./node_modules/.bin/flow",
-    "prepublish": "npm run eslint && npm run flow && npm run build",
+    "prepublish": "yarn run eslint && yarn run flow && yarn run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "git+https://github.com/object88/webpack-file-list-plugin.git",
