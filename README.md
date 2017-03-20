@@ -13,7 +13,7 @@ app.36607625cfc7b0dd814c.js.map         34 kB    1, 2  [emitted]         app
 manifest.29ede0603cd2ee1c98f0.js.map  14.1 kB       2  [emitted]         manifest
 ```
 
-This plugin will generate a JSON file with the bundles & file names, so that a web server can serve the exact file without relying on pattern matching or other clumsy methods.
+This plugin will generate a JSON file with the chunks & file names, so that a web server can serve the exact file without relying on pattern matching or other clumsy methods.
 
 Example output:
 ``` JSON
@@ -30,5 +30,32 @@ Example output:
     "source": "manifest.29ede0603cd2ee1c98f0.js",
     "map": "manifest.29ede0603cd2ee1c98f0.js.map"
   }
+}
+```
+
+Example usage in `webpack.conf.js`:
+
+``` js
+module.exports = {
+  entry: {
+    app: path.resolve(__dirname, 'js', 'app.js'),
+  },
+  // ...
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: function (module) {
+         return module.context && module.context.indexOf('node_modules') !== -1;
+      },
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest',
+      minChunks: Infinity,
+    }),
+    new WebpackModulesList({
+      filename: 'foo.json',
+      path: path.resolve(__dirname, 'bin'),
+    }),
+  ],
 }
 ```

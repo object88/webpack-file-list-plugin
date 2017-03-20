@@ -17,7 +17,7 @@ type ResultEntry = {
   map?: string,
 };
 
-function WebpackModuleList(options: Options) {
+function WebpackFileList(options: Options) {
   if (!options.filename) {
     throw new Error("filename property is required on options");
   } else if (!options.path) {
@@ -27,7 +27,7 @@ function WebpackModuleList(options: Options) {
   this.options = options;
 }
 
-WebpackModuleList.prototype.apply = function(compiler) {
+WebpackFileList.prototype.apply = function(compiler) {
   compiler.plugin('emit', (compilation, callback) => {
     const json: Result = {};
     compilation.chunks.forEach((chunk) => {
@@ -78,4 +78,4 @@ WebpackModuleList.prototype.apply = function(compiler) {
   });
 };
 
-module.exports = WebpackModuleList;
+module.exports = WebpackFileList;
