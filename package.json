@@ -1,6 +1,6 @@
 {
   "name": "webpack-file-list-plugin",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A WebPack2 plugin to emit a JSON file with a map of chunk names and files",
   "main": "lib/index.js",
   "scripts": {
