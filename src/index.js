@@ -14,9 +14,11 @@ type Result = {
 };
 
 type ResultEntry = {
-  map?: string,
+  css?: string,
+  cssMap?: string,
   priority?: number,
   source: string,
+  sourceMap?: string,
 };
 
 function WebpackFileList(options: Options) {
@@ -59,10 +61,14 @@ WebpackFileList.prototype.apply = function(compiler) {
           json[chunk.name] = ref;
         }
 
-        if (filename.endsWith('js')) {
+        if (filename.endsWith('css')) {
+          ref.css = filename;
+        } else if (filename.endsWith('css.map') && this.options.includeMap) {
+          ref.cssMap = filename;
+        } else if (filename.endsWith('js')) {
           ref.source = filename;
-        } else if (filename.endsWith('map') && this.options.includeMap) {
-          ref.map = filename;
+        } else if (filename.endsWith('js.map') && this.options.includeMap) {
+          ref.sourceMap = filename;
         }
       });
     });
