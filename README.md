@@ -62,7 +62,7 @@ Example output:
 
 * `path` _string, required_ - The absolute path where to write the JSON file to.
 
-* `priorities` _[string]_ - The sorted list of chunks to assign priority properties to in the output.  See [More on priorities](more-on-priorities), below.
+* `priorities` _[string]_ - The sorted list of chunks to assign priority properties to in the output.  See [More on priorities](#more-on-priorities), below.
 
 ### Example configuration
 
