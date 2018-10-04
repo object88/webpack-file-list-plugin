@@ -99,14 +99,18 @@ WebpackFileList.prototype.apply = function(compiler) {
     fs.open(destination, 'w', mode, (openErr, fd) => {
       if (openErr) {
         console.error(`Failed to open file '${destination}' with error '${openErr.toString()}'; quitting.`);
-        callback();
+        if (callback) {
+          callback();
+        }
         return;
       }
 
       fs.write(fd, buffer, 0, buffer.length, 0, (writeErr) => {
         if (writeErr) {
           console.error(`Failed to write file '${destination}' with error '${writeErr.toString()}'; quitting.`);
-          callback();
+          if (callback) {
+            callback();
+          }
           return;
         }
 
@@ -115,7 +119,9 @@ WebpackFileList.prototype.apply = function(compiler) {
             console.warn(`Failed to close file '${destination}' with error '${closeErr.toString()}'.`);
           }
 
-          callback();
+          if (callback) {
+            callback();
+          }
         });
       })
     });
