@@ -21,6 +21,22 @@ type ResultEntry = {
   sourceMap?: string,
 };
 
+/**
+ * New webpack 4 API,
+ * for webpack 2-3 compatibility used .plugin('...', cb)
+ */
+function unCamelCase(str): string {
+    return str.replace(/[A-Z]/g, (letter) => '-' + letter.toLowerCase());
+}
+
+function pluginCompatibility(caller, hook, cb) {
+    if (caller.hooks) {
+        caller.hooks[hook].tap('webpack-file-list-plugin', cb);
+    } else {
+        caller.plugin(unCamelCase(hook), cb);
+    }
+}
+
 function WebpackFileList(options: Options) {
   if (!options.filename) {
     throw new Error("filename property is required on options");
@@ -46,16 +62,14 @@ WebpackFileList.prototype.applyPriorities = function(result: Result) {
     resultEntry.priority = priorityCount;
     priorityCount++;
   });
-}
+};
 
 WebpackFileList.prototype.apply = function(compiler) {
-  compiler.plugin('emit', (compilation, callback) => {
-    const priorities = this.options.priorities || [];
-
+  pluginCompatibility(compiler, 'emit', (compilation, callback) => {
     const json: Result = {};
     compilation.chunks.forEach((chunk) => {
       chunk.files.forEach((filename) => {
-        let ref = json[chunk.name]
+        let ref = json[chunk.name];
         if (ref === undefined) {
           ref = {};
           json[chunk.name] = ref;
@@ -89,7 +103,7 @@ WebpackFileList.prototype.apply = function(compiler) {
         return;
       }
 
-      fs.write(fd, buffer, 0, buffer.length, 0, (writeErr, written, str) => {
+      fs.write(fd, buffer, 0, buffer.length, 0, (writeErr) => {
         if (writeErr) {
           console.error(`Failed to write file '${destination}' with error '${writeErr.toString()}'; quitting.`);
           callback();
